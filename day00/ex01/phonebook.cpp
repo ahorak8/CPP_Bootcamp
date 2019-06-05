@@ -1,6 +1,6 @@
 #include "phonebook.hpp"
 
-void userCommand() {
+void userCommand(Contact contacts[], int index) {
     std::string command;
 
     std::cout << "Please input command: \n";
@@ -10,7 +10,17 @@ void userCommand() {
 
     if (command == "ADD")
     {
-        /* code */
+        if (index == 8)
+        {
+            std::cout << "Phonebook is full. No more contacts can be added \n";
+            std::cout << "Please select another command. \n";
+        }
+        if (index < 8)
+        {
+            contacts[index].addContact();
+            index++;
+        }
+           
     }
     if (command == "SEARCH")
     {
@@ -18,15 +28,16 @@ void userCommand() {
     }
     if (command == "EXIT")
     {
-        /* code */
+        std::cout << "Thank you for using the phonebook";
+        std::exit;
     }
     else
     {
-        /* code */
+        std::cout << "Invalid command. \n";
     }
     while (command != "EXIT")
     {
-        /* code */
+        userCommand(contacts, index);
     }
     
     
