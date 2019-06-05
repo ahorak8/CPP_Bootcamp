@@ -20,7 +20,8 @@ private:
     std::string darkestSecret;
 public:
     void addContact();
-
+    void searchContacts(Contact aContact[], int index) const;
+    void getContact(Contact aContact) const;
 };
 
 void    userCommand(Contact contacts[], int index);
