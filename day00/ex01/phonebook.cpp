@@ -2,6 +2,7 @@
 
 void    Contact::addContact() {
     std::cout << "Please enter new contact's details. \n";
+    std::cin.ignore();
     std::cout << "Please enter First Name: \n";
     getline(std::cin, firstName);
     std::cout << "Please enter Last Name: \n";
@@ -24,11 +25,21 @@ void    Contact::addContact() {
     getline(std::cin, underwearColour);
     std::cout << "Please enter Darkest Secret: \n";
     getline(std::cin, darkestSecret);
-}
+    std::cout << "\n";
+    std::cout << "Contact entered! \n";
+    std::cout << "\n";
+};
 
 void    Contact::searchContacts(Contact aContact[], int index) const{
     int i = 0;
 
+    if (index == 0)
+    {
+        std::cout << "Phonebook is empty. \n";
+        std::cout << "\n";
+        return;
+    }
+    
     std::cout << "     index|";
     std::cout << "first name|";
     std::cout << " last name|";
@@ -38,9 +49,10 @@ void    Contact::searchContacts(Contact aContact[], int index) const{
     while (i < index)
     {
         std::cout << "         " << i << "|";
-        std::cout <<  << "|";
-        std::cout <<  << "|";
-        std::cout <<  << "|";
+        std::cout << display(aContact[i].firstName) << "|";
+        std::cout << display(aContact[i].lastName) << "|";
+        std::cout << display(aContact[i].nickname) << "|";
+        std::cout << "\n";
         std::cout << "\n";
         i++;
     }
@@ -55,11 +67,10 @@ void    Contact::searchContacts(Contact aContact[], int index) const{
         else
         {
             std::cout << "Index not valid. \n";
-        }
-        
+        }    
     }
     
-}
+};
 
 void Contact::getContact(Contact aContact) const{
     std::cout << aContact.firstName << "\n";
@@ -73,7 +84,31 @@ void Contact::getContact(Contact aContact) const{
     std::cout << aContact.favouriteMeal  << "\n";
     std::cout << aContact.underwearColour << "\n";
     std::cout << aContact.darkestSecret << "\n";
-}
+    std::cout << "\n";
+};
+ 
+ std::string Contact::display(std::string aString) const{
+     std::string newString;
+     const char * c = aString.c_str();
+
+     if (std::strlen(c) > 10)
+     {
+         newString = aString.std::string::substr(0, 9) + ".";
+     }
+     else if (std::strlen(c) == 10)
+     {
+         return (aString);
+     }
+     else
+     {
+        newString = aString;
+        while (std::strlen(newString.c_str()) != 10)
+        {
+            newString = " " + newString;
+        }
+     }
+     return (newString);
+ };
 
 void userCommand(Contact contacts[], int index) {
     std::string command;
@@ -98,14 +133,14 @@ void userCommand(Contact contacts[], int index) {
     }
     if (command == "SEARCH")
     {
-        contacts[8].searchContacts[contacts, index];
+        contacts[8].searchContacts(contacts, index);
     }
     if (command == "EXIT")
     {
-        std::cout << "Thank you for using the phonebook";
-        std::exit;
+        std::cout << "Thank you for using the phonebook \n";
+        std::exit(1);
     }
-    else
+    if (command != "ADD" && command != "SEARCH" && command != "EXIT")
     {
         std::cout << "Invalid command. \n";
     }
@@ -113,4 +148,4 @@ void userCommand(Contact contacts[], int index) {
     {
         userCommand(contacts, index);
     }   
-}
+};

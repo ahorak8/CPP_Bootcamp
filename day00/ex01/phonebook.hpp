@@ -22,6 +22,7 @@ public:
     void addContact();
     void searchContacts(Contact aContact[], int index) const;
     void getContact(Contact aContact) const;
+    std::string display(std::string aString) const;
 };
 
 void    userCommand(Contact contacts[], int index);
