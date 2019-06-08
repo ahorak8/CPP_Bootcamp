@@ -143,7 +143,7 @@ void FragTrap::meleeAttack(std::string const &target)
     this->_vaultHunterDamage = this->_meleeAttackDamage;
     std::cout << "(FR4G-TP) <" << _name << "> attacks <" << target << "> with a melee attack, ";
     std::cout << "causing <" << _meleeAttackDamage << "> points of damage ! \n";
-    std::cout << "(FR4G-TP) " << target << ": Ow hohoho, that hurts! Yipes! \n";
+    std::cout << target << ": Ow hohoho, that hurts! Yipes! \n";
     return ;
 }
 
@@ -152,7 +152,7 @@ void FragTrap::rangedAttack(std::string const &target)
     this->_vaultHunterDamage = this->_rangedAttackDamage;
     std::cout << "(FR4G-TP) <" << _name << "> attacks <" << target << "> at range, ";
     std::cout << "causing <" << _rangedAttackDamage << "> points of damage ! \n";
-    std::cout << "(FR4G-TP) " << target << ": Ow hohoho, that hurts! Yipes! \n";
+    std::cout << target << ": Ow hohoho, that hurts! Yipes! \n";
     return ;
 }
 

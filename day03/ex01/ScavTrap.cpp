@@ -127,7 +127,7 @@ void ScavTrap::meleeAttack(std::string const &target)
 {
     std::cout << "(SC4V-TP) <" << _name << "> slaps <" << target << ">, ";
     std::cout << "causing <" << _meleeAttackDamage << "> points of damage ! \n";
-    std::cout << "(SC4V-TP) " << target << ": Ow you slapped me! \n";
+    std::cout << target << ": Ow you slapped me! \n";
     return ;
 }
 
@@ -135,7 +135,7 @@ void ScavTrap::rangedAttack(std::string const &target)
 {
     std::cout << "(SC4V-TP) <" << _name << "> throws a rock at <" << target << ">, ";
     std::cout << "causing <" << _rangedAttackDamage << "> points of damage ! \n";
-    std::cout << "(SC4V-TP) " << target << ": Did you just throw a rock at me?? \n";
+    std::cout << target << ": Did you just throw a rock at me?? \n";
     return ;
 }
 

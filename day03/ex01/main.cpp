@@ -1,8 +1,9 @@
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-    ScavTrap player1("Bob");
+    FragTrap player1("Bob");
     ScavTrap player2("Turret");
 
     std::cout << "\n\n 1: \n";
