@@ -121,6 +121,14 @@ unsigned int FragTrap::getDamage(std::string attack)
      if (attack == "ice")
     {
         return (this->_iceAttackDamage);
+    }     
+    if (attack == "headbutt")
+    {
+        return (this->_headButtAttackDamage);
+    }
+    if (attack == "insult")
+    {
+        return (this->_insultAttackDamage);
     }
     else
     {
