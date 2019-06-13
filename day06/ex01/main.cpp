@@ -41,6 +41,9 @@ int main()
 
     ptr = serialize();
 
+    std::cout << "\n\n";
+    std::cout << "Memory address: " << ptr << "\n";
+
     myData = deserialize(ptr);
 
     std::cout << "\n\n";
@@ -48,7 +51,6 @@ int main()
     std::cout << "s1: " << myData->s1 << "\n";
     std::cout << "s2: " << myData->s2 << "\n";
     std::cout << "n:  " << myData->n << "\n";
-
     
     return 1;
 }

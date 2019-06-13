@@ -1,116 +1,113 @@
 #include <iostream>
 #include <iomanip>
 
-// void charConversion(char **argv)
-// {
-//     if (argv[1] && !argv[1][1])
-//     {
-//         if (isalpha(argv[1][0]))
-//         {
-//             int c = argv[1][0];
-//             std::cout << "char: ";
-//             std::cout << static_cast<char>(c);
-//             std::cout << "\n";
-//         }
-//         else
-//         {
-//             std::cout << "char: ";
-//             std::cout << "Not displayable \n";
-//         }
-//     }
-//     else
-//     {
-//         std::cout << "char: ";
-//         std::cout << "Not possible \n";
-//     }
-// }
+void isDouble(char** argv){
+    
+    double d = static_cast<double>(atof(argv[1]));
+    std::cout << "double: " << d << std::endl;
+    if (!d)
+        std::cout << "double: impossible" << std::endl;
+}
 
-// void intConversion(char **argv)
-// {
-//     if (argv[1] || argv[1])
-//     {
-//         if (isnumber(*argv[1]))
-//         {
-//             int c = *argv[1];
-//             std::cout << "int: ";
-//             std::cout << static_cast<int>(c - 48);
-//             std::cout << "\n";
-//         }
-//         else
-//         {
-//             std::cout << "int: ";
-//             std::cout << "Not possible \n";
-//         }
-//     }
-//     else
-//     {
-//         std::cout << "int: ";
-//         std::cout << "Not possible** \n";
-//     }
-// }
+void isFloat(char** argv, int x){
+    int z = 0;
+    if(!argv[1][x])
+        z = 1;
+    for (; argv[1][x]; x++){
+        if (!isdigit(argv[1][x])){
+            if (argv[1][x] == 'f')
+                x++;
+                if(!argv[1][x])
+                    break;
+            else
+                z = 1;
 
-// int main(int argc, char **argv) {
+        }
+    }
+    if (z == 0)
+    {
+        float f = static_cast<float>(atof(argv[1]));
+        std::cout << "float: " << f << 'f' << std::endl;
+    }
+    if (z == 1)
+        std::cout << "float: impossible" << std::endl;
+    isDouble(argv);
+}
 
-//     if (argc > 1)
-//     {
-//         charConversion(argv);
-//         intConversion(argv);
-//     }
-//     else 
-//     {
-//         std::cout << "Please input a parameter \n";
-//     }
-//     return (0);
-// }
+void isChar(char** argv){
+    if (isalpha(argv[1][0]) && !argv[1][1])
+    {
+        char c = static_cast<char>(argv[1][0]);
+        std::cout << "char: " << c << std::endl;
+        return;
+    }
+    else if (atoi(argv[1]) || argv[1][0] == '0')
+    {
+        int j = atoi(argv[1]);
+        char a = static_cast<char>(j);
+        if (isprint(j))
+            std::cout << "char: " << '\'' << a << '\'' << std::endl;
+        else
+            std::cout << "char: Non displayable" << std::endl;
+    }
+    else
+        std::cout << "char: impossible" << std::endl;
+}
 
-int main(int argc, char const *argv[])
-{
-	if (argc != 2){
-		std::cout << "Please input ONE paramater \n";
-		return (0);
-	}
-	std::string input = argv[1];
-	std::cout << std::fixed << std::setprecision(1);
-	// CHAR
-	try{
-		int i = std::stoi(input);
-		char c = i;
-		if (std::isprint(c)){
-			std::cout << "char: " << c <<std::endl;
-		} else {
-			std::cout << "char: " << "non displayble" <<std::endl;
-		}
-	} catch (std::exception &e)
-	{
-		std::cout << "char: " << "impossible" <<std::endl;
-	}
+void isInt(char** argv){
+    int y = 0;
+    int x = 0;
+    if (argv[1][x] == '-')
+        x++;
+    for (; argv[1][x]; x++){
+        if (!isdigit(argv[1][x])){
+            if(argv[1][x] == '.' && argv[1][0] != '.')
+            {
+                x++;
+                if(argv[1][x] != '0')
+                {
+                    y = 2;
+                    isFloat(argv, x);
+                    break;
+                }
+                while(argv[1][x] == '0')
+                    x++;
+                if(!argv[1][x])
+                    break;
+                if (argv[1][x] == 'f')
+                    x++;
+                if(!argv[1][x])
+                    break;
+                
+            }
+            y = 1;
+            break;
+        }
 
-	//INT
-	try{
-		int a = std::stoi(input);
-		std::cout << "int: " << a <<std::endl;
-	} catch (std::exception &e)
-	{
-		std::cout << "int: " << "impossible" <<std::endl;
-	}
+    }
+    if (y == 0)
+    {
+        int i = static_cast<int>(atoi(argv[1]));
+        std::cout << "int: " << i << std::endl;
+    }
+    else if (y == 1 || y == 2)
+        std::cout << "int: impossible" << std::endl;
+    if (y != 2){
+        float f = static_cast<float>(atof(argv[1]));
+        std::cout << "float: " << f << 'f' << std::endl;
+        double d = static_cast<double>(atof(argv[1]));
+        std::cout << "double: " << d << std::endl;
+    }
 
-	//FLOAT
-	try{
-		float f = std::stof(input);
-		std::cout << "float: " << f << "f" <<std::endl;
-	} catch (std::exception &e)
-	{
-		std::cout << "float: " << "impossible" <<std::endl;
-	}
+}
 
-	// DOUBLE
-	try {
-		double d = std::stod(input);
-		std::cout << "double: " << d <<std::endl;
-
-	} catch (std::exception &e)
-	{
-		std::cout << "double: " << "impossible" <<std::endl;
-	}
-	return 0;
+int main(int argc, char** argv){
+    std::cout << std::fixed << std::showpoint;
+    std::cout << std::setprecision(1);
+    
+    if (argc == 2){
+        isChar(argv);
+        isInt(argv);
+    }
+    return 0;
 }
